@@ -1,19 +1,26 @@
 count = 0
-while count<100:
-    count +=1
-    if count ==1:
+while count < 1000:
+    count += 1
+    #input_666 = input('Если хотите выйти, введите 666:')
+    #if input_666 == '666': break
+    if count == 1:
         while True:
             input_1 = input('Налить ведро 3л, если нет, то введите 0:')
-            if input_1 == '0': break
-            elif input_1 == '3': break
+            if input_1 == '0':
+                break
+            elif input_1 == '3':
+                break
         while True:
             input_2 = input('Налить ведро 5л, если нет, то введите 0:')
-            if input_2 == '0': break
-            elif input_2 == '5': break
+            if input_2 == '0':
+                break
+            elif input_2 == '5':
+                break
         second_V3 = int(input_1)
         second_V5 = int(input_2)
         V3 = second_V3
         V5 = second_V5
+        if input_2 == '666': break
 
     if count > 1:
         while True:
@@ -30,59 +37,73 @@ while count<100:
                 break
         other_1 = int(input_1)
         other_2 = int(input_2)
-        if V3 ==0:
+        if V3 == 0:
             V3 = other_1
         if V5 == 0:
             V5 = other_2
-        if V3 !=0:
+        if V3 != 0:
             V3
         if V5 != 0:
             V5
 
-
-
     if V5 == 5:
         print('ведро с 5л - полное')
-    elif V5 ==0:
+    elif V5 == 0:
         print('Ведро с 5л - пустое')
     if V3 == 0:
         print('Ведро с 3л - пустое')
     elif V3 == 3:
         print('Ведро с 3 - полное')
 
-    DICT = dict(vedro3 = V3,vedro5 = V5)
+    DICT = dict(vedro3=V3, vedro5=V5)
     put_to_5 = ''
     put_to_3 = ''
     while True:
         put_to_5 = input('Напишите да, если хотите перелить из ведра 3л в 5л, если не хотите напишите нет: ')
-        if put_to_5 == 'да': break
-        elif put_to_5 == 'нет': break
-    if put_to_5 == 'да':
-        V5 = DICT['vedro3']
-        DICT['vedro3'] -= V3
+        if put_to_5 == 'да':
+            break
+        elif put_to_5 == 'нет':
+            break
+    if put_to_5 == 'да' and V5 == 3 and V3 == 3:
+        V5 = 5
+        V3 = abs(V3 - 2)
+    if put_to_5 == 'да' and V5 == 2 and V3 == 3:
+        V5 = int(V5 + V3)
+        V3 = abs(V3 - V3)
+    if put_to_5 == 'да' and V5 <= 1:
+        V5 = V5 + V3
+        V3 = DICT['vedro3'] - V3
+
+
+
     elif put_to_5 == 'нет':
         V5 = DICT['vedro5']
     while True:
         put_to_3 = input('Напишите да, если хотите перелить из ведра 5л в 3л, если не хотите напишите нет: ')
-        if put_to_3 == 'да': break
-        elif put_to_3 == 'нет': break
-    if put_to_3 == 'да' and 0<V5<=3:
+        if put_to_3 == 'да':
+            break
+        elif put_to_3 == 'нет':
+            break
+    if put_to_3 == 'да' and 0 < V5 <= 3:
         V3 = int(V5)
         V5 -= V3
-    elif put_to_3 =='да' and V5>3 and V3 ==0:
-        V3 =3
+    elif put_to_3 == 'да' and V5 > 3 and V3 == 0:
+        V3 = 3
         V5 = V5 - V3
-    elif put_to_3 =='да' and V5>3 and V3<3:
-        V5 = V5 -(3-V3)
+    elif put_to_3 == 'да' and V5 > 3 and V3 < 3:
+        V5 = V5 - (3 - V3)
+        V3 = 3
     elif put_to_3 == 'нет':
-        V3 = DICT['vedro3']
-        V5 = DICT['vedro5']
+        V3 = int(V3)
+        V5 = int(V5)
     print('В ведре 5л =', V5)
     print('В ведре 3л =', V3)
     while True:
         put_out_5 = input('если хотите вылить 5л введите да, не хотите введите нет:')
-        if put_out_5 == 'да': break
-        elif put_out_5 == 'нет': break
+        if put_out_5 == 'да':
+            break
+        elif put_out_5 == 'нет':
+            break
     if put_out_5 == 'да' and V5 != 0:
         V5 = 0
         print('В ведре 5л количество воды = 0')
@@ -92,15 +113,17 @@ while count<100:
         print('В ведре 5л - пусто')
     while True:
         put_out_3 = input('если хотите вылить воду из ведра 3л, введите да, если не хотите введите нет:')
-        if put_out_3 == 'да' :break
-        elif put_out_3 =='нет': break
-    if put_out_3 =='да' and V3 != 0:
-        V3 = 0
-        print('В ведре 3л - пусто')
-    elif put_out_3 == 'нет':
-        V3 = int(V3)
-        print('В ведре 3л -', V3)
-        print('В ведре 5л -', V5)
-    if V5 == 4 : break
-if V5 ==4:
-    print('You are winner!!!')
+        if put_out_3 == 'да':
+            break
+        elif put_out_3 == 'нет':
+            break
+        if put_out_3 == 'да' and V3 != 0:
+            V3-=V3
+            print('В ведре 3л', V3)
+        elif put_out_3 == 'нет':
+            V3 = int(V3)
+            print('В ведре 3л -', V3)
+            print('В ведре 5л -', V5)
+        if V5 == 4:
+            print('You are winner')
+        if V5 == 4: break
