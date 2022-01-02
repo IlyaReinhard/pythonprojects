@@ -1,0 +1,18 @@
+from collections import *
+money_dict = {100: 30, 50: 30, 20: 30, 10:  30, 5: 30}
+num = int(input('Введите сумму, кратную 5:'))
+new_list = []
+while num != 0:
+    for i in [100, 50, 20, 10, 5]:
+        if num - i >= 0:
+            num -= i
+            new_list.append(i)
+        elif num - i < 0:
+            continue
+counter_get_off = Counter(new_list)
+dict_get = dict(counter_get_off)
+counter_money_bank = Counter(money_dict)
+counter_money_bank.subtract(counter_get_off)
+dict_from_getting = dict(counter_money_bank)
+print(dict_get)
+print(dict_from_getting)
