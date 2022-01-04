@@ -1,0 +1,22 @@
+import os
+folder = []
+files_of = []
+for i in os.walk('/home/elijah/Загрузки/books_my'):
+    folder.append(i)
+for address, dirs, files in folder:
+    for file in files:
+        files_of.append(address+'/'+file)
+print(files_of)
+books_to_print = []
+count = 0
+words = input('Введите слова через пробел:').split()
+for file in range(len(files_of)):
+    with open(files_of[file], 'r') as new_file:
+        fucking = new_file.read()
+        for word in words:
+            if word in fucking:
+                count += 1
+            else: break
+        if count == len(words):
+            books_to_print.append(files_of[file])
+print(*books_to_print, sep='\n')
