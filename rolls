@@ -1,0 +1,37 @@
+class WinDoor:
+     def __init__(self, x, y, name="unk"):
+       self.x = x
+       self.y = y
+       self.name = name
+       self.square = x * y 
+
+     def __repr__(self):
+       return f'{self.name} {self.x}x{self.y}'
+
+class Room:
+
+    def __init__(self, x, y, z):
+        self.width = x
+        self.lenght = y
+        self.height = z
+        self.wd = []
+
+      
+    def full_square(self):
+      self.square = 2 * self.height * (self.width + self.height)
+      return self.square
+
+    def addWD(self, w, h, name='unk'):
+        self.wd.append(WinDoor(w, h, name))
+        
+    def workSurface(self):
+        new_square = self.full_square()
+        for i in self.wd:
+            new_square -= i.square
+        return new_square
+
+    def rolls_count(self, width_roll, lenght_roll):
+      square_of_1_roll = width_roll * lenght_roll
+      work_surface = self.workSurface()
+      count_of_rolls = work_surface / square_of_1_roll
+      return float('{:.2f}'.format(count_of_rolls))
