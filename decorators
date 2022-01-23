@@ -1,0 +1,36 @@
+def reverse_params(func):
+
+  def wrapper(*args):
+    new_args = args[::-1]
+    return func(*new_args)
+
+  return wrapper  
+  
+  @reverse_params
+def f(a,b,c):
+  multiply = (a*b) / c
+  return multiply
+  
+  class OlegException(Exception):
+  def __init__(self, name = 'OlegErorr'):
+    self.name = name
+  def __str__(self):
+    return self.name
+
+
+def without_Oleg_decorator(func):
+  def wrapper(*args):
+    new_list_args = [str(i) for i in args]
+    line = ''.join(new_list_args).lower()
+    try:
+      if 'oleg' in line:
+        raise OlegException
+    except:
+      print('Oleg Exception!!!')
+      print('Уберите Олега из аргументов!')
+      return func(*args)
+  return wrapper
+
+@without_Oleg_decorator
+def fffff(*args):
+  return f" {args} !!! "
