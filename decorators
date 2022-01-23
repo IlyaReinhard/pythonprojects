@@ -34,3 +34,22 @@ def without_Oleg_decorator(func):
 @without_Oleg_decorator
 def fffff(*args):
   return f" {args} !!! "
+  
+  
+  
+  
+  args = ('irA','olEg','Grom')
+new_list_args = [str(i) for i in args]
+line = ','.join(new_list_args).lower()
+new_listing = line.split(',')
+for i in new_listing:
+  if i == 'oleg':
+    new_listing.remove('oleg')
+new_capitalize = []
+for j in new_listing:
+  new_capitalize.append(j.capitalize())
+new_str = ', '.join(new_capitalize)
+new_str
+
+def fffff(*args):
+  return f" {', '.join(args)}!!! "
