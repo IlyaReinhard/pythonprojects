@@ -5,11 +5,14 @@ def reverse_params(func):
     return func(*new_args)
 
   return wrapper  
-  
-  @reverse_params
+  # EXAMPLES
+@reverse_params
 def f(a,b,c):
   multiply = (a*b) / c
   return multiply
+  
+  
+  
   
   class OlegException(Exception):
   def __init__(self, name = 'OlegErorr'):
@@ -20,9 +23,9 @@ def f(a,b,c):
 
 def without_Oleg_decorator(func):
   def wrapper(*args):
-    new_list_args = [str(i) for i in args]
-    line = ''.join(new_list_args).lower()
-    try:
+    new_list_args = [str(i) for i in args] # здесь подобный синтакси так как я хотел преобразовать параметры из декорируемоой функции
+    line = ''.join(new_list_args).lower()  # в форму строки для того, чтобы все привести к нижнему регистру, так аргументы могут передеваться в неккоретктойн форме
+    try:                                   # например так: "oLeGNecHeloVek"
       if 'oleg' in line:
         raise OlegException
     except:
@@ -30,26 +33,41 @@ def without_Oleg_decorator(func):
       print('Уберите Олега из аргументов!')
       return func(*args)
   return wrapper
-
+#example
 @without_Oleg_decorator
 def fffff(*args):
   return f" {args} !!! "
   
   
-  
-  
-  args = ('irA','olEg','Grom')
-new_list_args = [str(i) for i in args]
-line = ','.join(new_list_args).lower()
-new_listing = line.split(',')
-for i in new_listing:
-  if i == 'oleg':
-    new_listing.remove('oleg')
-new_capitalize = []
-for j in new_listing:
-  new_capitalize.append(j.capitalize())
-new_str = ', '.join(new_capitalize)
-new_str
+# декоратор с параметрами и без
+def repeat(_func=None, *, n=1):
+    def _repeat(f):
+        def inner(*args, **kwargs):
+            return f(*args, **kwargs) * n
+        return inner
+    if _func is None:
+        # вызов с параметрами как раньше
+        return _repeat
+    else:
+        # вызов без параметра 
+        return _repeat(_func)
 
-def fffff(*args):
-  return f" {', '.join(args)}!!! "
+#examples
+
+@repeat(n=3)
+def fffff(value):
+  return str(value) + '!!!'
+
+@repeat()
+def fffff(value):
+  return str(value) + '!!!'
+
+@repeat
+def fffff(value):
+  return str(value) + '!!!'
+
+
+  
+  
+  
+
